@@ -1,14 +1,20 @@
 # LuzTeclado
 Acender a luz de iluminacao do teclado apenas quando o usuario estiver sentado à frente.
-//nota: usar optoacoplador para ligar o led do teclado utilizando fonte externa
-//usar o rele para ligar a luz do ambiente
 
 /*
-funcoes: pausar o circuito/sistema utilizado o RC ou o SReflexão
-a luz do teclado so acende se esta funcao estiver ativa, 
-se a iluminação do ambiente estiver baixa, 
-se o sensor de movimento ativar o sensor ultrassom
-e se o ultrassom detectar a distancia minima especificada
+NOTAS:
+(usar led ou display para mostrar o status)
+
+funcoes: 
+1-pausar o circuito/sistema utilizado o RC ou o SReflexão
+2-a luz do teclado so acende se esta funcao estiver ativa, 
+  se a iluminação do ambiente estiver baixa, 
+  se o sensor de movimento ativar o sensor ultrassom
+  e se o ultrassom detectar a distancia minima especificada
+  (fonte externa para ligar os leds atraves do optoacoplador)
+3-acender a luz ambiente atraves do sensor de movimento utilizando rele
+4-acender a luz ambinete atraves do RC utilizando rele
+5-ligar cooler(vibracall(optoacoplador)) caso a temperatura se eleve (sensor LM35)
 */
 
 COMPONENTES:
@@ -19,6 +25,9 @@ Sensor ultrassonico;
 Rele 5v 1ch;
 Sensor IR de reflexao;
 Receptor IR
+2x optoacoplador
+fonte de carregador de celular 5v
+leds
 
 LIGAÇÃO DOS COMPONENTES:
 
