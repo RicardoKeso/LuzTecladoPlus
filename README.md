@@ -18,12 +18,11 @@ Arduino mini ou nano;
 Light Dependent Resistor (LDR);
 Sensor de movimento;
 Sensor ultrassonico;
-Rele 5v 1ch;
 Sensor IR de reflexao;
 Receptor IR
-2x optoacoplador
 fonte de carregador de celular 5v
 leds
+(optoacoplador ou Rele 5v 1ch com Transistor c549c);
 
 LIGAÇÃO DOS COMPONENTES:
 
@@ -43,7 +42,7 @@ ultrassom:
   TRIG em D3;
   ECHO em D2.
   
-transistor c549c: (not logico para o rele, caso necessário)
+transistor c549c: (not logico para o rele, SE UTILIZADO)
   COLETOR ligado no T2 do RELE e em T1 do r12k(1);
   T2 do r12k(1) ligado em +5;
   BASE ligada em T1 do r12k(2);
@@ -51,11 +50,20 @@ transistor c549c: (not logico para o rele, caso necessário)
   EMISSOR ligado em T1 do r150;
   T2 do r150 ligado em gnd.
   
-rele: (O RELÊ QUE UTILIZO, É ACIONADO COM SINAL LÓGICO BAIXO)
+rele: (o relê utilizado, é acionado com sinal lógico baixo, por isso o transistor)
   T1 ligado em +5;
   T2 ligado no COLETOR do transistor; 
   T3 ligado em GND.
   
+optoacoplador: (SE UTILIZADO, no lugar do relê com transistor)
+  ânodo ligado em D12;
+  catodo ligado em T1 do r150;
+  T2 do r150 ligado em GND;
+  coletor ligado T1 r150;
+  T2 r150 ligado em +5;
+  emissor ligado em T1 do LedDoTeclado;
+  T2 do LedDoTeclado ligado em GND;
+
 sensorOpticoDeReflexao: 
   catodo do emissor e do receptor ligados em GND;
   anodo do emissor em T1 do r150;
@@ -81,4 +89,5 @@ NOTAS:
  - Para resolver este problema, utilizo a biblioteca NewTone chamando a função NewTone() no lugar de tone().
  - Para não utilizar o transistor, basta inverter os sinais de entrada do relê, e ligar o T2 do relê em D12.
  - O relê consome muita energia e pode afetar outros dispositivos ou sensores, como o LDR.
+ - Para reduzir o consumo de energia, utilizo o optoacoplador.(Atenção com o limite de carga máxima do emissor!)
 */
