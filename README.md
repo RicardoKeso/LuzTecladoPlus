@@ -1,10 +1,6 @@
 # LuzTeclado
-Acender a luz de iluminacao do teclado apenas quando o usuario estiver sentado à frente.
 
 /*
-NOTAS:
-(usar led ou display para mostrar o status)
-
 funcoes: 
 1-pausar o circuito/sistema utilizado o RC ou o SReflexão
 2-a luz do teclado so acende se esta funcao estiver ativa, 
@@ -47,15 +43,15 @@ ultrassom:
   TRIG em D3;
   ECHO em D2.
   
-transistor c549c:
-  COLETOR ligado no T2 do RELE e em T1 do r12k;
-  T2 do r12k ligado em +5;
-  BASE ligada em T1 do r12k;
-  T2 do r12k ligado em D12;
+transistor c549c: (not logico para o rele, caso necessário)
+  COLETOR ligado no T2 do RELE e em T1 do r12k(1);
+  T2 do r12k(1) ligado em +5;
+  BASE ligada em T1 do r12k(2);
+  T2 do r12k(2) ligado em D12;
   EMISSOR ligado em T1 do r150;
   T2 do r150 ligado em gnd.
   
-rele: 
+rele: (O RELÊ QUE UTILIZO, É ACIONADO COM SINAL LÓGICO BAIXO)
   T1 ligado em +5;
   T2 ligado no COLETOR do transistor; 
   T3 ligado em GND.
@@ -78,7 +74,11 @@ buzzer:
   T2 r150 em D10;
   T- em GND;
 
-Ha um conflito entre a funcao tone() e o IRremoteInt.h
-pois usam a mesma chamada de funcao timer2.
-
-Para resolver este problema, utilizo a biblioteca NewTone chamando a função NewTone() no lugar de tone().
+/*
+NOTAS:
+ - usar led ou display para mostrar o status
+ - Ha um conflito entre a funcao tone() e o IRremoteInt.h pois usam a mesma chamada de funcao timer2.
+ - Para resolver este problema, utilizo a biblioteca NewTone chamando a função NewTone() no lugar de tone().
+ - Para não utilizar o transistor, basta inverter os sinais de entrada do relê, e ligar o T2 do relê em D12.
+ - O relê consome muita energia e pode afetar outros dispositivos ou sensores, como o LDR.
+*/
