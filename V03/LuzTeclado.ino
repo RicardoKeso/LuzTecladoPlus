@@ -11,7 +11,7 @@ const int movPower = 5;
 const int movData = 6;
 const int sensorReflex = 7;
 const int buzzer = 10;
-const int saidaRele = 12;
+const int saidaLed = 12;
 const int sensorLuz = 3; //analogico
 
 bool paused = false;
@@ -21,7 +21,7 @@ void setup(){
   Serial.begin(9600);
   pinMode(movPower, OUTPUT);
   pinMode(ultrassomPing, OUTPUT);
-  pinMode(saidaRele, OUTPUT);
+  pinMode(saidaLed, OUTPUT);
   pinMode(buzzer, OUTPUT);
   
   pinMode(movData, INPUT);
@@ -50,9 +50,9 @@ void Luzteclado(){
     if (ssr.SensorMovimento(movPower, movData)){
       ssr.LedPlaca(1, 0);
       int flagDistancia = ssr.SensorDistancia(ultrassomPing, ultrassomEcho, 90, 200);
-      ssr.Rele(saidaRele, flagDistancia);
+      digitalWrite(saidaLed, flagDistancia);
     }
   } else {
-    ssr.Rele(saidaRele, LOW);
+    digitalWrite(saidaLed, LOW);
   }
 }
