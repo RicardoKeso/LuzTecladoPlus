@@ -1,0 +1,58 @@
+/*Created by RicardoKeso  - V3*/
+
+#include <IO_Sensors_RKeso.h>
+#include <NewTone.h>
+
+IO_Sensors_RKeso ssr;
+
+const int ultrassomEcho = 2;
+const int ultrassomPing = 3;
+const int movPower = 5;
+const int movData = 6;
+const int sensorReflex = 7;
+const int buzzer = 10;
+const int saidaRele = 12;
+const int sensorLuz = 3; //analogico
+
+bool paused = false;
+
+void setup(){
+  ssr.Buzzer(buzzer, 2000, 10, 3);
+  Serial.begin(9600);
+  pinMode(movPower, OUTPUT);
+  pinMode(ultrassomPing, OUTPUT);
+  pinMode(saidaRele, OUTPUT);
+  pinMode(buzzer, OUTPUT);
+  
+  pinMode(movData, INPUT);
+  pinMode(ultrassomEcho, INPUT);
+  pinMode(sensorReflex, INPUT);
+}
+
+void loop(){  
+ 
+  if(!digitalRead(sensorReflex)){
+    paused = !paused;
+    ssr.Buzzer(buzzer, 2000, 20, 1);
+    while(!digitalRead(sensorReflex)){}
+  }
+  if(paused){ 
+    //ssr.LedPlaca(5, 495);
+    /*colocar outro metodo de status, sem dalay*/
+    ssr.LedPlaca(0, 0);
+  } else {
+    Luzteclado();
+  }
+}
+
+void Luzteclado(){
+  if(ssr.SensorIluminacao(sensorLuz, 50)){
+    if (ssr.SensorMovimento(movPower, movData)){
+      ssr.LedPlaca(1, 0);
+      int flagDistancia = ssr.SensorDistancia(ultrassomPing, ultrassomEcho, 90, 200);
+      ssr.Rele(saidaRele, flagDistancia);
+    }
+  } else {
+    ssr.Rele(saidaRele, LOW);
+  }
+}
