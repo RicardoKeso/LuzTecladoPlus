@@ -83,27 +83,41 @@ buzzer:
   T2 r150 em D10;
   T- em GND;
 
-cd4511: (se utilizar portas analógicas, antes converte-las para digital)
+display1dig:
+  T1 ligado em T1 r150(1);
+  T2 ligado em T1 r150(2);
+  T4 ligado em T1 r150(3);
+  T5 ligado em T1 r150(8); (não utilizado com CD4511)
+  T6 ligado em T1 r150(4);
+  T7 ligado em T1 r150(5);
+  T9 ligado em T1 r150(6);
+  T10 ligado em T1 r150(7);
+  T3 ou T8 ligado em GND se CATODO comum ou +5 se ANODO comum;
+
+cd4511: (utiliza 4 portas)(display CATODO comum)(se utilizar portas analógicas, antes converte-las para digital)
   T1, T2, T6, T7 ligados em 15(A1), 16(A2), 17(A3), 14(A0) respectivamente;
   T3, T4, T16 ligados em +5;
   T5, T8 ligados em GND;
-  T9 ligado em T1 r150(1);
-  T10 ligado em T1 r150(2);
-  T11 ligado em T1 r150(3);
-  T12 ligado em T1 r150(4);
-  T13 ligado em T1 r150(5);
-  T14 ligado em T1 r150(6);
-  T15 ligado em T1 r150(7);
+  T9 ligado em T2 r150(1) TDisplay 1;
+  T10 ligado em T2 r150(2) TDisplay 2;
+  T11 ligado em T2 r150(3) TDisplay 4;
+  T12 ligado em T2 r150(4) TDisplay 6;
+  T13 ligado em T2 r150(5) TDisplay 7;
+  T14 ligado em T2 r150(7) TDisplay 9;
+  T15 ligado em T2 r150(6) TDisplay 10;
 
-display1dig(catodo):
-  T1 ligado em T2 r150(1);
-  T2 ligado em T2 r150(2);
-  T4 ligado em T2 r150(3);
-  T6 ligado em T2 r150(4);
-  T7 ligado em T2 r150(5);
-  T9 ligado em T2 r150(7);
-  T10 ligado em T2 r150(6);
-  T3 ou T8 ligado em GND;
+74hc595: (utiliza 3 portas)(display ANODO comum)(se utilizar portas analógicas, antes converte-las para digital)
+  T11, T12, T14 ligados em 15(A1), 14(A0), 16(A2) respectivamente;
+  T10, T16 ligados em +5;
+  T8, T13 ligados em GND;
+  T1 ligado em T2 r150(4) TDisplay 6;
+  T2 ligado em T2 r150(3) TDisplay 4;
+  T3 ligado em T2 r150(2) TDisplay 2;
+  T4 ligado em T2 r150(1) TDisplay 1;
+  T5 ligado em T2 r150(7) TDisplay 9;
+  T6 ligado em T2 r150(6) TDisplay 10;
+  T7 ligado em T2 r150(8) TDisplay 5;
+  T15 ligado em T2 r150(5) TDisplay 7;
 
 /*
 NOTAS:
