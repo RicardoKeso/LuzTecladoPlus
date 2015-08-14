@@ -19,10 +19,11 @@ Light Dependent Resistor (LDR);
 Sensor de movimento;
 Sensor ultrassonico;
 Sensor IR de reflexao;
-Receptor IR
-fonte de carregador de celular 5v
-leds
-(optoacoplador ou Rele 5v 1ch com Transistor c549c);
+Receptor IR com ControleRemoto;
+fonte de carregador de celular 5v;
+leds(para iluminar o teclado)
+optoacoplador ou Rele 5v 1ch mais um Transistor c549c;
+display (catodo) de 1 dig e 7 seguimentos mais um Decoder CD4511;
 
 LIGAÇÃO DOS COMPONENTES:
 
@@ -81,6 +82,28 @@ buzzer:
   T+ em T1 r150;
   T2 r150 em D10;
   T- em GND;
+
+cd4511: (se utilizar portas analógicas, antes converte-las para digital)
+  T1, T2, T6, T7 ligados em 15(A1), 16(A2), 17(A3), 14(A0) respectivamente;
+  T3, T4, T16 ligados em +5;
+  T5, T8 ligados em GND;
+  T9 ligado em T1 r150(1);
+  T10 ligado em T1 r150(2);
+  T11 ligado em T1 r150(3);
+  T12 ligado em T1 r150(4);
+  T13 ligado em T1 r150(5);
+  T14 ligado em T1 r150(6);
+  T15 ligado em T1 r150(7);
+
+display1dig(catodo):
+  T1 ligado em T2 r150(1);
+  T2 ligado em T2 r150(2);
+  T4 ligado em T2 r150(3);
+  T6 ligado em T2 r150(4);
+  T7 ligado em T2 r150(5);
+  T9 ligado em T2 r150(7);
+  T10 ligado em T2 r150(6);
+  T3 ou T8 ligado em GND;
 
 /*
 NOTAS:
