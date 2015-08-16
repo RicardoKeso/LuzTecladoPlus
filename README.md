@@ -23,7 +23,7 @@ Receptor IR com ControleRemoto;
 fonte de carregador de celular 5v;
 leds(para iluminar o teclado)
 optoacoplador ou Rele 5v 1ch mais um Transistor c549c;
-display (catodo) de 1 dig e 7 seguimentos mais um Decoder CD4511;
+display de 1 dig e 7 seguimentos mais um Decoder CD4511 ou 74HC595;
 
 LIGAÇÃO DOS COMPONENTES:
 
@@ -92,9 +92,9 @@ display1dig:
   T7 ligado em T1 r150(5);
   T9 ligado em T1 r150(6);
   T10 ligado em T1 r150(7);
-  T3 ou T8 ligado em GND se CATODO comum ou +5 se ANODO comum;
+  T3 ou T8 ligado em GND se CATODO, comum ou ligado em +5 se ANODO comum;
 
-cd4511: (utiliza 4 portas)(display CATODO comum)(se utilizar portas analógicas, antes converte-las para digital)
+cd4511: (utiliza 4 portas)(se utilizar portas analógicas, antes converte-las para digitais)
   T1, T2, T6, T7 ligados em 15(A1), 16(A2), 17(A3), 14(A0) respectivamente;
   T3, T4, T16 ligados em +5;
   T5, T8 ligados em GND;
@@ -106,7 +106,7 @@ cd4511: (utiliza 4 portas)(display CATODO comum)(se utilizar portas analógicas,
   T14 ligado em T2 r150(7) TDisplay 9;
   T15 ligado em T2 r150(6) TDisplay 10;
 
-74hc595: (utiliza 3 portas)(display ANODO comum)(se utilizar portas analógicas, antes converte-las para digital)
+74hc595: (utiliza 3 portas)(se utilizar portas analógicas, antes converte-las para digitais)
   T11, T12, T14 ligados em 15(A1), 14(A0), 16(A2) respectivamente;
   T10, T16 ligados em +5;
   T8, T13 ligados em GND;
